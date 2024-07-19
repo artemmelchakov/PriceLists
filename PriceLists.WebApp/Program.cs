@@ -1,7 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using PriceLists.Data;
+using System.Globalization;
+using AppContext = PriceLists.Data.AppContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppContext>(dbContextOptionsBuilder => 
+{
+    var connectionString = builder.Configuration.GetConnectionString("PriceListsDb");
+    dbContextOptionsBuilder.UseSqlServer(connectionString).UseSnakeCaseNamingConvention(CultureInfo.InvariantCulture);
+});
+builder.Services.AddScoped<IRepository, AppRepository>();
 
 var app = builder.Build();
 

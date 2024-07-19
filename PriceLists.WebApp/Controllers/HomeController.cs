@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PriceLists.Data;
 using PriceLists.WebApp.Models;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace PriceLists.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         public IActionResult Index()
