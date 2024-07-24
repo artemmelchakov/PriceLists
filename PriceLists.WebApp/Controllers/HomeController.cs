@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using PriceLists.Data;
 using PriceLists.WebApp.Models;
 using System.Diagnostics;
 

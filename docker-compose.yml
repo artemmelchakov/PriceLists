@@ -7,8 +7,20 @@ services:
       context: .
       dockerfile: PriceLists.WebApp/Dockerfile
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      #- "5124:8080"
+      - "${PRICELISTS_WEBAPP_HTTPS_PORT}:8081"
+    depends_on:
+      - pricelists.api
+    environment:
+      PRICELISTS_API_HTTPS_HOST: ${PRICELISTS_API_HTTPS_HOST}
+  pricelists.api:
+    image: ${DOCKER_REGISTRY-}pricelistsapi
+    build:
+      context: .
+      dockerfile: PriceLists.Api/Dockerfile
+    ports:
+      #- "5263:8080"
+      - "${PRICELISTS_API_HTTPS_PORT}:8081"
     depends_on:
       - db
   db:
@@ -21,5 +33,6 @@ services:
       - "1433:1433"
     volumes:
       - pricelistsdb-volume:/var/lib/mssql/data
+
 volumes:
   pricelistsdb-volume:

@@ -1,22 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using PriceLists.Data;
-using PriceLists.WebApp.Routing;
-using System.Globalization;
-using AppContext = PriceLists.Data.AppContext;
+using PriceLists.Common.Routing;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (builder.Configuration["PRICELISTS_API_HTTPS_HOST"] is null)
+{
+    throw new ArgumentNullException(
+        "ƒл€ работы приложени€ необходимо объ€вить переменную окружени€ PRICELISTS_API_HTTPS_HOST, котора€ содержит url необходимого API.");
+}
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRouting(routeOptions => routeOptions.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer));
-
-builder.Services.AddDbContext<AppContext>(dbContextOptionsBuilder => 
-{
-    var connectionString = builder.Configuration.GetConnectionString("PriceListsDb");
-    dbContextOptionsBuilder.UseSqlServer(connectionString).UseSnakeCaseNamingConvention(CultureInfo.InvariantCulture);
-});
-builder.Services.AddScoped<IRepository, AppRepository>();
 
 var app = builder.Build();
 
@@ -30,11 +24,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller:slugify=PriceList}/{action:slugify=GetAll}/{id?}");

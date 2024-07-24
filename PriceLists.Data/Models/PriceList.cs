@@ -2,10 +2,10 @@
 
 public class PriceList : Entity
 {
-    public virtual string Name { get; set; }
+    public virtual string Name { get; set; } = null!;
 
-    public virtual IEnumerable<ColumnValue> ColumnValues { get; set; }
-    public virtual IEnumerable<Product> Products { get; set; }
+    public virtual IEnumerable<ColumnValue>? ColumnValues { get; set; }
+    public virtual IEnumerable<Product>? Products { get; set; }
 
-    public virtual IEnumerable<Column> Columns { get; set; }
+    public virtual IEnumerable<Column>? Columns { get; set; }
 }

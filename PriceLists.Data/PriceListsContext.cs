@@ -4,7 +4,7 @@ using PriceLists.Data.Models.ManyToMany;
 
 namespace PriceLists.Data;
 
-public class AppContext : DbContext
+public class PriceListsContext : DbContext
 {
     public virtual DbSet<ColumnMtmPriceList> ColumnMtmPriceList { get; set; }
 
@@ -13,7 +13,7 @@ public class AppContext : DbContext
     public virtual DbSet<PriceList> PriceLists { get; set; }
     public virtual DbSet<Product> Products { get; set; }
 
-    public AppContext(DbContextOptions<AppContext> options) : base(options) => Database.EnsureCreated();
+    public PriceListsContext(DbContextOptions<PriceListsContext> options) : base(options) => Database.EnsureCreated();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,7 +24,7 @@ public class AppContext : DbContext
             entity.HasIndex(e => e.ColumnId);
             entity.HasIndex(e => e.PriceListId);
         });
-        
+
         modelBuilder.Entity<Column>(
             entity => entity.HasMany(e => e.PriceLists).WithMany(e => e.Columns).UsingEntity<ColumnMtmPriceList>());
 

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Создать новый прайс-лист";
+}
+<div class="text-center">
+    <h1 class="display-4">Создать новый прайс-лист</h1>
+    <span class="price-list-adding__error-message text-danger" style="display: none">
+        Произошла ошибка при создании прайс-листа.
+    </span>
+    <form class="price-list-add-form">
+        <div class="row">
+            <div class="col-auto text-start">
+                <label>Имя:</label>
+            </div>
+            <div class="col-xl">
+                <input class="form-control" type="text" name="name" value="Прайс-лист от UTC @DateTime.UtcNow.ToShortDateString()" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto text-start">
+                <label>Добавьте существующую колонку:</label>
+            </div>
+            <div class="col-xl">
+                <select name="price-list-add-form__existing-columns" class="form-select">
+                    <option value="default-option" selected>Выберите из списка</option>
+                </select>
+            </div>
+        </div>
+        <div class="price-list-add-form__existing-added-columns row" style="display: none"></div>
+        <div class="price-list-add-form__new-added-columns row" style="display: none"></div>
+        <div class="row col-xl">
+            <button class="price-list-add-form__new-column-button" type="button">Создать новую колонку</button>
+        </div>
+        <div class="row col-xl">
+            <button class="price-list-add-form__saving-button" type="button">Сохранить</button>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script type="module" src="~/js/price-list/price-list-add.js" asp-append-version="true"></script>
+}
