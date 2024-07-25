@@ -1,0 +1,69 @@
+﻿@using PriceLists.Data.Enums
+@using System.Text.Json
+@model ProductAddViewModel
+@{
+    ViewData["Title"] = "Добавить товар";
+}
+<div class="text-center">
+    <h1 class="display-4">Добавить товар</h1>
+    <span class="product-adding__error-message text-danger" style="display: none">
+        Произошла ошибка при создании товара.
+    </span>
+    <div class="row col-xl">
+        <button class="back-to-price-list" type="button">Обратно к прайс-листу</button>
+    </div>
+    <form class="product-add-form">
+        <input type="hidden" name="priceListId" value="@Model.PriceListId" />
+        <div class="row">
+            <div class="col-2 text-start">
+                <label>Название:</label>
+            </div>
+            <div class="col-xl">
+                <input class="form-control" type="text" name="name" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 text-start">
+                <label>Артикул:</label>
+            </div>
+            <div class="col-xl">
+                <input class="form-control" type="number" name="code" />
+            </div>
+        </div>
+        @if (Model.Columns is not null && Model.Columns.Any())
+        {
+            @foreach (var column in Model.Columns)
+            {
+                <div class="product-add-form__column-value-row row">
+                    <div class="col-2 text-start">
+                        <label>@($"{column.Name} ({column.TypeName})"):</label>
+                    </div>
+                    <div class="col-xl">
+                        <input type="hidden" name="columnId" value="@column.Id" />
+                        @if(column.Type == ColumnTypeValues.Numeric)
+                        {
+                            <input class="form-control" type="number" name="columnValue" />
+                        }
+                        else if (column.Type == ColumnTypeValues.String)
+                        {
+                            <input class="form-control" type="text" name="columnValue" />
+                        }
+                        else if (column.Type == ColumnTypeValues.Text)
+                        {
+                            <textarea class="form-control" rows="4" name="columnValue"></textarea>
+                        }
+                    </div>
+                </div>
+            }          
+        }
+        <div class="row col-xl">
+            <button class="product-add-form__saving-button" type="button">Сохранить</button>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        const priceListId = '@Model.PriceListId';
+    </script>
+    <script type="module" src="~/js/product/product-add.js" asp-append-version="true"></script>
+}

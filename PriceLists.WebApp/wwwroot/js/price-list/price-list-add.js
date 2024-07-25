@@ -33,7 +33,7 @@ $('.price-list-add-form__saving-button').on('click', async function () {
     let data = MapData.mapPriceListFromForm(addedColumns, newColumnsElements);
     let response = await FetchData.addPriceList(data);
     if (response.ok && response.status == 200) {
-        window.location.replace('/price-list/get-all');
+        $.redirect('/price-list/get-all');
     }
     else {
         RenderData.showErrorMessage();

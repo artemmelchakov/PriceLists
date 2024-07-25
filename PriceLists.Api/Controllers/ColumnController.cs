@@ -24,7 +24,7 @@ public class ColumnController : ControllerBase
 
     /// <summary> Получить список всех кастомных колонок. </summary>
     [HttpGet("get-all")]
-    public async Task<IEnumerable<ColumnGetAllResponse>?> GetAll()
+    public async Task<IEnumerable<ColumnGetAllResponse>?> GetAllAsync()
     {
         var columns = await _repository.Find<Column>().ToListAsync();
         var responseEnumerable = columns.Count != 0 ? _mapper.Map<IEnumerable<ColumnGetAllResponse>>(columns) : null;

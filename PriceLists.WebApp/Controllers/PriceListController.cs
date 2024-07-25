@@ -11,6 +11,9 @@ public class PriceListController : Controller
     /// <summary> Получить представление со списком всех прайс-листов. </summary>
     public IActionResult GetAll() => View();
 
+    /// <summary> Получить представление прайс-листа с информацией о его товарах. </summary>
+    public IActionResult Get(uint id) => View(id);
+
     /// <summary> Получить представление создания нового прайс-листа. </summary>
     public IActionResult Add() => View();
 }
