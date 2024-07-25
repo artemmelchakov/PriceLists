@@ -19,9 +19,9 @@ public class PriceListsRepository : IPriceListsRepository
     public IQueryable<TResult> Find<TEntity, TResult>(ISpecification<TEntity, TResult> specification) where TEntity : BaseEntity => 
         specification.AppendQuery(_context.Set<TEntity>());
 
-    public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity
+    public async Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity
     {
-        _ = _context.Set<TEntity>().Add(entity);
+        _ = await _context.Set<TEntity>().AddAsync(entity);
         return entity;
     }
 

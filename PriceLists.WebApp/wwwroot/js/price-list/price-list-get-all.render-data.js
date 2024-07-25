@@ -8,19 +8,13 @@
             return;
         }
 
-        let table = $('<table>').addClass('table').appendTo($('.price-lists'));
-        table.append(`
-        <thead>
-            <tr class="tr__header">
-                <th scope="col">№</th>
-                <th scope="col">Наименование</th>
-            </tr>
-        </thead>`);
-        let tbody = $('<tbody>').appendTo(table);
+        $('.price-lists table').show();
+        let tbody = $('.price-lists tbody');
         for (var i = 0; i < priceLists.length; i++) {
             let tr = $('<tr>').appendTo(tbody);
-            $('<th>').attr('scope', 'row').appendTo(tr).text(i + 1);
-            $('<td>').appendTo(tr).text(priceLists[i].name);
+            $('<th>').attr('scope', 'row').text(i + 1).appendTo(tr);
+            let td = $('<td>').appendTo(tr);
+            $('<a>').attr('href', '/price-list/get/' + priceLists[i].id).text(priceLists[i].name).appendTo(td);
         }
     }
 }
