@@ -7,9 +7,20 @@ let addedColumns = new Set();
 let newColumnsElements = new Set();
 
 // Действия при загрузке страницы.
-$(window).on('load', async function () {
-    existingColumns = await FetchData.getAllColumns();
-    RenderData.renderExistingColumns(existingColumns);
+$(window).on('load', async function windowOnLoadHandler() {
+    try {
+        let response = await FetchData.getAllColumns();
+        if (response.ok && [200, 204].some(s => s == response.status)) {
+            existingColumns = response.status == 204 ? null : await response.json();
+            RenderData.renderExistingColumns(existingColumns);
+        }
+        else {
+            setTimeout(windowOnLoadHandler, recallTimeoutMs);
+        }
+    } catch (e) {
+        setTimeout(windowOnLoadHandler, recallTimeoutMs);
+        throw e;
+    }
 });
 
 // Действия при выборе существующей кастомной колонки из списка.

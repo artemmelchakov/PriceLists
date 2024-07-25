@@ -1,6 +1,7 @@
 ﻿@inject IConfiguration configuration
 @{
     var pricelistsApiHttpsHost = configuration["PRICELISTS_API_HTTPS_HOST"];
+    var recallTimeoutMs = configuration.GetValue<uint>("PriceListsApiSettings:RecallOnFailTimeoutMs");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +53,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const pricelistsApiHttpsHost = '@pricelistsApiHttpsHost';
+        const recallTimeoutMs = @recallTimeoutMs;
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

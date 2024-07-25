@@ -14,10 +14,9 @@
 
     // Получить список всех прайс-листов.
     static async getAllColumns() {
-        let response = await fetch(pricelistsApiHttpsHost + '/api/v1/column/get-all', {
+        return await fetch(pricelistsApiHttpsHost + '/api/v1/column/get-all', {
             mode: "cors",
             method: "GET"
         });
-        return response.status == 204 ? null : response.json();
     }
 }
