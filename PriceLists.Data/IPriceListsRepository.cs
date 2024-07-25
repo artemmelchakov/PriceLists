@@ -21,7 +21,7 @@ public interface IPriceListsRepository
 
     /// <summary> Добавить сущность в контекст. </summary>
     /// <param name="entity"> Добавляемая сущность. </param>
-    TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity;
+    Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity;
 
     /// <summary>
     /// Добавить множество сущностей в контекст.

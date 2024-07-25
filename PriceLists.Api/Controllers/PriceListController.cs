@@ -27,7 +27,7 @@ public class PriceListController : ControllerBase
     
     /// <summary> Получить список всех прайс-листов. </summary>
     [HttpGet("get-all")]
-    public async Task<IEnumerable<PriceListGetAllResponse>?> GetAll()
+    public async Task<IEnumerable<PriceListGetAllResponse>?> GetAllAsync()
     {
         var priceLists = await _repository.Find<PriceList>().ToListAsync();
         var responseEnumerable = priceLists.Count != 0 ? _mapper.Map<IEnumerable<PriceListGetAllResponse>>(priceLists) : null;
@@ -37,29 +37,30 @@ public class PriceListController : ControllerBase
     /// <summary> Получить прайс-лист по <paramref name="id"/>. </summary>
     /// <param name="id"> Id прайс-листа. </param>
     [HttpGet("{id}")]
-    public async Task<PriceListGetResponse?> Get(uint id)
+    public async Task<PriceListGetResponse> GetAsync(uint id)
     {
-        var priceList = await _repository.GetAsync(new PriceListWithIncludedSpec(id));
-        // TODO
-        return null;
+        var priceList = await _repository.GetAsync(new PriceListWithIncludedSpec(id))
+            ?? throw new ArgumentException("Прайс-листа по указанному id не существует.");
+        var response = _mapper.Map<PriceListGetResponse>(priceList);
+        return response;
     }
 
     /// <summary> Создать прайст-лист. </summary>
     /// <param name="request"> Тело запроса на создание прайс-листа. </param>
     [HttpPost]
-    public async Task Add(PriceListAddRequest request)
+    public async Task AddAsync(PriceListAddRequest request)
     {
-        // Добавление прайс-листа.
-        var priceList = _mapper.Map<PriceList>(request);
-        _repository.Add(priceList);
-
-        // Добавление связей прайс-листа с уже существующими колонками.
+        // Проверка, что указанные в запросе существующие колонки действительно существуют.
         var existingColumnsIds = request.Columns.Where(c => c.Id.HasValue).Select(c => c.Id!.Value);
         var existingColumns = await _repository.Find(new EntitiesByIdsSpec<Column>(existingColumnsIds)).ToArrayAsync();
         if (existingColumns.Length != existingColumnsIds.Count())
         {
             throw new ArgumentException("Количество найденных существующих в БД кастомных колонок не совпадает с количеством переданных в запросе.");
         }
+
+        // Добавление прайс-листа.
+        var priceList = _mapper.Map<PriceList>(request);
+        await _repository.AddAsync(priceList);
 
         // Добавление связей прайс-листа с новыми колонками.
         var newColumnsRequestData = request.Columns.Where(c => !c.Id.HasValue);

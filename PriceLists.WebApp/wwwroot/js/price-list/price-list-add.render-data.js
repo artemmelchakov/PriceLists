@@ -15,20 +15,20 @@
     }
 
     // Отобразить выбранную добавленную для текущего прайс-листа существующую кастомную колонку.
-    static renderAddedColumn(column, deleteFromSetHandler) {
+    static renderAddedColumn(column, deleteFromSetFunc) {
         let addedColumnsDiv = $('.price-list-add-form__existing-added-columns').show();
         let row = $('<div>').addClass('row').appendTo(addedColumnsDiv);
         $('<div>').addClass('col-xl').text(column.name).appendTo(row);
         $('<div>').addClass('col-xl').text(column.typeName).appendTo(row);
         let deletingColumn = $('<div>').addClass('col-xl').appendTo(row);
         $('<button>').addClass('price-list-add-form__deleting-button').attr('type', 'button').text('Удалить').on('click', function () {
-            deleteFromSetHandler();
+            deleteFromSetFunc();
             row.remove();
         }).appendTo(deletingColumn);
     }
 
     // Отобразить строку для создания новой колонки.
-    static renderNewColumnRow(deleteFromSetHandler) {
+    static renderNewColumnRow(deleteFromSetFunc) {
         let newColumnsDiv = $('.price-list-add-form__new-added-columns').show();
         let row = $('<div>').addClass('row').appendTo(newColumnsDiv);
         // Имя колонки
@@ -46,7 +46,7 @@
         let deletingColumn = $('<div>').addClass('col-xl').appendTo(row);
         let columnEl = { nameEl: columnNameEl, typeEl: columnTypeEl };
         $('<button>').addClass('price-list-add-form__deleting-button').attr('type', 'button').text('Удалить').on('click', function () {
-            deleteFromSetHandler(columnEl);
+            deleteFromSetFunc(columnEl);
             row.remove();
         }).appendTo(deletingColumn);
         return columnEl;
