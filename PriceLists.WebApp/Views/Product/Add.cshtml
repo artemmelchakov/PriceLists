@@ -4,15 +4,15 @@
 @{
     ViewData["Title"] = "Добавить товар";
 }
-<div class="text-center">
+<div class="text-center d-grid gap-3">
     <h1 class="display-4">Добавить товар</h1>
     <span class="product-adding__error-message text-danger" style="display: none">
         Произошла ошибка при создании товара.
     </span>
     <div class="row col-xl">
-        <button class="back-to-price-list" type="button">Обратно к прайс-листу</button>
+        <button class="back-to-price-list btn btn-light" type="button">Обратно к прайс-листу</button>
     </div>
-    <form class="product-add-form">
+    <form class="product-add-form d-grid gap-3">
         <input type="hidden" name="priceListId" value="@Model.PriceListId" />
         <div class="row">
             <div class="col-2 text-start">
@@ -57,7 +57,7 @@
             }          
         }
         <div class="row col-xl">
-            <button class="product-add-form__saving-button" type="button">Сохранить</button>
+            <button class="product-add-form__saving-button btn btn-primary" type="button">Сохранить</button>
         </div>
     </form>
 </div>

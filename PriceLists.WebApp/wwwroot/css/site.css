@@ -25,3 +25,7 @@ body {
     height: 16px;
     width: 16px;
 }
+
+.link-underline-hover:hover {
+    text-decoration: underline;
+}

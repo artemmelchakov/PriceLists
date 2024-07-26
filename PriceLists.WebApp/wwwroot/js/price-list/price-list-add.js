@@ -10,12 +10,9 @@ let newColumnsElements = new Set();
 $(window).on('load', async function windowOnLoadHandler() {
     try {
         let response = await FetchData.getAllColumns();
-        if (response.ok && [200, 204].some(s => s == response.status)) {
-            existingColumns = response.status == 204 ? null : await response.json();
+        if (response.status == 200) {
+            existingColumns = await response.json();
             RenderData.renderExistingColumns(existingColumns);
-        }
-        else {
-            setTimeout(windowOnLoadHandler, recallTimeoutMs);
         }
     } catch (e) {
         setTimeout(windowOnLoadHandler, recallTimeoutMs);

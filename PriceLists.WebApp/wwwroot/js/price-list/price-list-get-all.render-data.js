@@ -3,7 +3,7 @@
     static renderPriceListsTable(priceLists) {
         $('.price-lists__loading-message').hide();
 
-        if (priceLists == null) {
+        if (priceLists.length == 0) {
             $('.price-lists__empty-list-message').show();
             return;
         }

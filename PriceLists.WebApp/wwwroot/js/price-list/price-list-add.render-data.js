@@ -1,7 +1,7 @@
 ﻿export class RenderData {
     // Отобразить список уже существующих в БД кастомных колонок.
     static renderExistingColumns(columns) {
-        if (columns == null) {
+        if (columns.length == 0) {
             return;
         }
         let columnsSelect = $('select[name="price-list-add-form__existing-columns"]');
@@ -21,7 +21,7 @@
         $('<div>').addClass('col-xl').text(column.name).appendTo(row);
         $('<div>').addClass('col-xl').text(column.typeName).appendTo(row);
         let deletingColumn = $('<div>').addClass('col-xl').appendTo(row);
-        $('<button>').addClass('price-list-add-form__deleting-button').attr('type', 'button').text('Удалить').on('click', function () {
+        $('<button>').addClass('price-list-add-form__deleting-button btn btn-danger').attr('type', 'button').text('Удалить').on('click', function () {
             deleteFromSetFunc();
             row.remove();
         }).appendTo(deletingColumn);
@@ -45,7 +45,7 @@
         </select>`).appendTo(columnTypeDiv);
         let deletingColumn = $('<div>').addClass('col-xl').appendTo(row);
         let columnEl = { nameEl: columnNameEl, typeEl: columnTypeEl };
-        $('<button>').addClass('price-list-add-form__deleting-button').attr('type', 'button').text('Удалить').on('click', function () {
+        $('<button>').addClass('price-list-add-form__deleting-button btn btn-danger').attr('type', 'button').text('Удалить').on('click', function () {
             deleteFromSetFunc(columnEl);
             row.remove();
         }).appendTo(deletingColumn);
