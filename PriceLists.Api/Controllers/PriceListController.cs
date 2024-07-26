@@ -30,7 +30,7 @@ public class PriceListController : ControllerBase
     public async Task<IEnumerable<PriceListGetAllResponse>?> GetAllAsync()
     {
         var priceLists = await _repository.Find<PriceList>().ToListAsync();
-        var responseEnumerable = priceLists.Count != 0 ? _mapper.Map<IEnumerable<PriceListGetAllResponse>>(priceLists) : null;
+        var responseEnumerable = priceLists.Count != 0 ? _mapper.Map<IEnumerable<PriceListGetAllResponse>>(priceLists) : [];
         return responseEnumerable;
     }
 

@@ -5,12 +5,9 @@ import { RenderData } from './price-list-get-all.render-data.js';
 $(window).on('load', async function windowOnLoadHandler() {
     try {
         let response = await FetchData.getAllPriceLists();
-        if (response.ok && [200, 204].some(s => s == response.status)) {
-            const priceLists = response.status == 204 ? null : await response.json();
+        if (response.status == 200) {
+            const priceLists = await response.json();
             RenderData.renderPriceListsTable(priceLists);
-        }
-        else {
-            setTimeout(windowOnLoadHandler, recallTimeoutMs);
         }
     } catch (e) {
         setTimeout(windowOnLoadHandler, recallTimeoutMs);

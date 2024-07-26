@@ -27,7 +27,7 @@ public class ColumnController : ControllerBase
     public async Task<IEnumerable<ColumnGetAllResponse>?> GetAllAsync()
     {
         var columns = await _repository.Find<Column>().ToListAsync();
-        var responseEnumerable = columns.Count != 0 ? _mapper.Map<IEnumerable<ColumnGetAllResponse>>(columns) : null;
+        var responseEnumerable = columns.Count != 0 ? _mapper.Map<IEnumerable<ColumnGetAllResponse>>(columns) : [];
         return responseEnumerable;
     }
 }

@@ -1,7 +1,7 @@
 ﻿export class RenderData {
     // Отобразить прайс-лист.
     static renderPriceList(priceList, productDeletingButtonClickHandler) {
-        let priceListInfoDiv = $('.price-list').show();
+        $('.price-list').show();
         $('.price-list__name').text(priceList.name);
         let trHeader = $('.tr__header');
 
@@ -24,7 +24,7 @@
             }
             let deletingTd = $('<td>').appendTo(tr);
             $('<button>')
-                .addClass('price-list__product-deleting-button btn btn-primary')
+                .addClass('price-list__product-deleting-button btn btn-danger')
                 .attr({ type: 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#productDeletingModal' })
                 .text('Удалить')
                 .on('click', () => productDeletingButtonClickHandler(tr, product.id))

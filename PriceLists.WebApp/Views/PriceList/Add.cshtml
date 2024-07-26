@@ -6,32 +6,32 @@
     <span class="price-list-adding__error-message text-danger" style="display: none">
         Произошла ошибка при создании прайс-листа.
     </span>
-    <form class="price-list-add-form">
+    <form class="price-list-add-form d-grid gap-3 mt-3">
         <div class="row">
-            <div class="col-auto text-start">
+            <div class="col-2 text-start">
                 <label>Название:</label>
             </div>
-            <div class="col-xl">
+            <div class="col-10 text-start">
                 <input class="form-control" type="text" name="name" value="Прайс-лист от UTC @DateTime.UtcNow.ToShortDateString()" />
             </div>
         </div>
         <div class="row">
-            <div class="col-auto text-start">
+            <div class="col-2 text-start">
                 <label>Добавьте существующую колонку:</label>
             </div>
-            <div class="col-xl">
+            <div class="col-10 text-start">
                 <select name="price-list-add-form__existing-columns" class="form-select">
                     <option value="default-option" selected>Выберите из списка</option>
                 </select>
             </div>
         </div>
-        <div class="price-list-add-form__existing-added-columns row" style="display: none"></div>
-        <div class="price-list-add-form__new-added-columns row" style="display: none"></div>
+        <div class="price-list-add-form__existing-added-columns row d-grid gap-3 border rounded p-3" style="display: none"></div>
+        <div class="price-list-add-form__new-added-columns row d-grid gap-3 border rounded p-3" style="display: none"></div>
         <div class="row col-xl">
-            <button class="price-list-add-form__new-column-button" type="button">Создать новую колонку</button>
+            <button class="price-list-add-form__new-column-button btn btn-success" type="button">Создать новую колонку</button>
         </div>
         <div class="row col-xl">
-            <button class="price-list-add-form__saving-button" type="button">Сохранить</button>
+            <button class="price-list-add-form__saving-button btn btn-primary" type="button">Сохранить</button>
         </div>
     </form>
 </div>
