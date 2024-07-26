@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Прайс-лист";
+}
+@model uint
+<div class="text-center">
+    <h1 class="display-4">Прайс-лист</h1>
+    <span class="product-deleting__error-message text-danger" style="display: none">
+        Не удалось удалить товар.
+    </span>
+    <div class="price-list d-grid gap-3 mt-3" style="display: none">
+        <div class="row">
+            <div class="col-2 text-start">
+                <label class="fw-bolder">Название прайс-листа:</label>
+            </div>
+            <div class="col-10 text-start">
+                <span class="price-list__name"></span>
+            </div>
+        </div>
+        <div class="row col-xl">
+            <button class="price-list__product-adding-button btn btn-primary" type="button">Добавить товар</button>
+        </div>
+        <div class="row col-xl">
+            <table class="table">
+                <thead>
+                    <tr class="tr__header">
+                        <th scope="col">Название товара</th>
+                        <th scope="col">Код товара</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно подтверждения удаления товара -->
+<div class="modal fade" id="productDeletingModal" tabindex="-1" aria-labelledby="productDeletingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDeletingModalLabel">Удаление товара</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Вы действительно хотите удалить товар?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Не удалять</button>
+                <button type="button" class="confirm-product-deleting btn btn-primary" data-bs-dismiss="modal">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const priceListId = '@Model';
+    </script>
+    <script type="module" src="~/js/price-list/price-list-get.js" asp-append-version="true"></script>
+}

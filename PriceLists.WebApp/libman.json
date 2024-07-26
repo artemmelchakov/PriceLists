@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+    "libraries": [
+        {
+            "library": "jquery.redirect@1.2.0",
+            "destination": "wwwroot/lib/jquery.redirect/"
+        },
+        {
+            "provider": "jsdelivr",
+            "library": "jquery.redirect@1.2.0",
+            "destination": "wwwroot/lib/jquery.redirect/",
+            "files": [
+                "README.md",
+                "jquery.redirect.min.js"
+            ]
+        }
+    ]
+}

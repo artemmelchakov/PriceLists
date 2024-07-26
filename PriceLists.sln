@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceLists.WebApp", "PriceLists.WebApp\PriceLists.WebApp.csproj", "{D0F59F2C-673B-4522-8207-23A0496A121F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceLists.WebApp", "PriceLists.WebApp\PriceLists.WebApp.csproj", "{D0F59F2C-673B-4522-8207-23A0496A121F}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6425C7D1-BCE1-48A7-B763-CF9119F04DB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceLists.Data", "PriceLists.Data\PriceLists.Data.csproj", "{A43387CA-282B-42F4-8899-16AD298DB48A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceLists.Api", "PriceLists.Api\PriceLists.Api.csproj", "{B4B858C6-5187-4175-BE60-748D9DC85C9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceLists.Common", "PriceLists.Common\PriceLists.Common.csproj", "{7D99A584-9F27-4424-984A-5F435E9411FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{6425C7D1-BCE1-48A7-B763-CF9119F04DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6425C7D1-BCE1-48A7-B763-CF9119F04DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6425C7D1-BCE1-48A7-B763-CF9119F04DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A43387CA-282B-42F4-8899-16AD298DB48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43387CA-282B-42F4-8899-16AD298DB48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A43387CA-282B-42F4-8899-16AD298DB48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A43387CA-282B-42F4-8899-16AD298DB48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B858C6-5187-4175-BE60-748D9DC85C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B858C6-5187-4175-BE60-748D9DC85C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B858C6-5187-4175-BE60-748D9DC85C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B858C6-5187-4175-BE60-748D9DC85C9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D99A584-9F27-4424-984A-5F435E9411FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D99A584-9F27-4424-984A-5F435E9411FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D99A584-9F27-4424-984A-5F435E9411FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D99A584-9F27-4424-984A-5F435E9411FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Список прайс-листов";
+}
+<div class="text-center">
+    <h1 class="display-4">Список прайс-листов</h1>
+    <div class="price-lists">
+        <span class="price-lists__loading-message">
+            Данные для таблицы загружаются...
+            <img class="loading-img" src="/src/img/loading.gif" />
+        </span>
+        <span class="price-lists__empty-list-message" style="display: none">
+            Список пуст. Вы можете <a asp-area="" asp-controller="PriceList" asp-action="Add">создать новый прайс-лист</a>.
+        </span>
+        <table class="table" style="display: none">
+            <thead>
+                <tr class="tr__header">
+                    <th scope="col">№</th>
+                    <th scope="col">Наименование</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script type="module" src="~/js/price-list/price-list-get-all.js" asp-append-version="true"></script>
+}
